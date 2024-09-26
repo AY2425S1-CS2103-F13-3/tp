@@ -7,11 +7,11 @@
       "headings": {
         "about-us": "About Us",
         "project-team": "Project team",
+        "jewi-teo": "Jewi Teo",
         "non-kittilakkananon": "Non Kittilakkananon",
         "quek-bing-heng": "Quek Bing Heng",
         "brendan": "Brendan",
-        "kai-wei": "Kai Wei",
-        "jewi": "Jewi"
+        "kai-wei": "Kai Wei"
       },
       "headingKeywords": {}
     },
@@ -132,6 +132,14 @@
       "title": "",
       "headings": {
         "addressbook-level-3": "AddressBook Level-3"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/jewiteo.md",
+      "title": "Jewi Teo's Project Portfolio Page",
+      "headings": {
+        "project-seeree-2-0": "Project: SeeRee 2.0"
       },
       "headingKeywords": {}
     },
