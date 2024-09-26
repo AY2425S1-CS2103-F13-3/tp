@@ -7,11 +7,11 @@
       "headings": {
         "about-us": "About Us",
         "project-team": "Project team",
+        "brendan-soh": "Brendan Soh",
         "lim-kai-wei": "Lim Kai Wei",
         "jewi-teo": "Jewi Teo",
         "non-kittilakkananon": "Non Kittilakkananon",
-        "quek-bing-heng": "Quek Bing Heng",
-        "brendan": "Brendan"
+        "quek-bing-heng": "Quek Bing Heng"
       },
       "headingKeywords": {}
     },
@@ -132,6 +132,14 @@
       "title": "",
       "headings": {
         "addressbook-level-3": "AddressBook Level-3"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/brendan.md",
+      "title": "John Doe's Project Portfolio Page",
+      "headings": {
+        "project-addressbook-level-3": "Project: AddressBook Level 3"
       },
       "headingKeywords": {}
     },
