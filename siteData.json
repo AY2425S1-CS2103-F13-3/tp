@@ -7,10 +7,10 @@
       "headings": {
         "about-us": "About Us",
         "project-team": "Project team",
+        "non-kittilakkananon": "Non Kittilakkananon",
         "quek-bing-heng": "Quek Bing Heng",
         "brendan": "Brendan",
         "kai-wei": "Kai Wei",
-        "non": "Non",
         "jewi": "Jewi"
       },
       "headingKeywords": {}
@@ -138,6 +138,14 @@
     {
       "src": "team/quekbingheng.md",
       "title": "John Doe's Project Portfolio Page",
+      "headings": {
+        "project-addressbook-level-3": "Project: AddressBook Level 3"
+      },
+      "headingKeywords": {}
+    },
+    {
+      "src": "team/tata32000.md",
+      "title": "Non Kittilakkananon's Project Portfolio Page",
       "headings": {
         "project-addressbook-level-3": "Project: AddressBook Level 3"
       },
