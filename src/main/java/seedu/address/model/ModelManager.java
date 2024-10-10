@@ -3,6 +3,9 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -143,6 +146,19 @@ public class ModelManager implements Model {
         return addressBook.equals(otherModelManager.addressBook)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredPersons.equals(otherModelManager.filteredPersons);
+    }
+
+    @Override
+    public void addSchedule(Person person, String name, LocalDate date, LocalTime time) {
+        // Logic to add a schedule to the person's schedule list
+        person.addSchedule(name, date, time);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public boolean hasScheduleConflict(Person person, LocalDate date, LocalTime time) {
+        // Check if the person already has a schedule on the same date and time
+        return person.hasScheduleConflict(date, time);
     }
 
 }

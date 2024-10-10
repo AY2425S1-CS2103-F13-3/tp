@@ -2,6 +2,11 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -24,6 +29,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
+    private final List<String> schedules;
 
     /**
      * Every field must be present and not null.
@@ -35,6 +41,7 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        schedules = new ArrayList<>();
     }
 
     public Name getName() {
@@ -112,6 +119,20 @@ public class Person {
                 .add("address", address)
                 .add("tags", tags)
                 .toString();
+    }
+
+    public void addSchedule(String name, LocalDate date, LocalTime time) {
+        String schedule = name + " on " + date + " at " + time;
+        schedules.add(schedule);
+    }
+
+    public boolean hasScheduleConflict(LocalDate date, LocalTime time) {
+        return schedules.stream().anyMatch(s -> s.contains(date.toString()) && s.contains(time.toString()));
+    }
+
+    // Getter for schedules, if needed
+    public List<String> getSchedules() {
+        return schedules;
     }
 
 }

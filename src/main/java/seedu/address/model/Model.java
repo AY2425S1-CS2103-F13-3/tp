@@ -3,6 +3,9 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
@@ -84,4 +87,8 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void addSchedule(Person person, String name, LocalDate date, LocalTime time);
+
+    boolean hasScheduleConflict(Person person, LocalDate date, LocalTime time);
 }
