@@ -63,7 +63,11 @@
         "appendix-instructions-for-manual-testing": "Appendix: Instructions for manual testing",
         "launch-and-shutdown": "Launch and shutdown",
         "deleting-a-person": "Deleting a person",
-        "saving-data": "Saving data"
+        "saving-data": "Saving data",
+        "adding-a-schedule": "Adding a Schedule",
+        "view-schedule": "View schedule",
+        "edit-schedule": "Edit schedule",
+        "delete-schedule": "Delete schedule"
       },
       "headingKeywords": {}
     },
