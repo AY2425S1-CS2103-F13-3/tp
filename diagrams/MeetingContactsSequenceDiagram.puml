@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+box MeetingContactsCommand LOGIC_COLOR_T1
+
+participant ":Command" as Command LOGIC_COLOR
+participant ":Model" as Model LOGIC_COLOR
+participant ":WeeklySchedule" as WeeklySchedule LOGIC_COLOR
+participant "meeting:Meeting" as Meeting LOGIC_COLOR
+participant ":FindCommand" as FindCommand LOGIC_COLOR
+participant ":ArgumentMultimap" as ArgumentMultimap LOGIC_COLOR
+participant "predicate:FieldContainsKeywordsPredicate" as FieldContainsKeywordsPredicate LOGIC_COLOR
+
+->>Command: execute(model)
+activate Command
+
+alt targetMeetinIndex out of bounds
+    <<--Command: throw CommandException
+end
+
+create ArgumentMultimap
+Command->>ArgumentMultimap: new ArgumentMultimap()
+activate ArgumentMultimap
+ArgumentMultimap-->>Command
+deactivate ArgumentMultimap
+
+Command->>Model: getMeeting(targetMeetingIndex)
+activate Model
+Model-->>Command: meeting
+deactivate Model
+
+Command->>Meeting: getContactUids()
+activate Meeting
+Meeting-->>Command: contactUids
+deactivate Meeting
+
+loop for each uid in contactUids
+    Command->>ArgumentMultimap: put(PREFIX_UID, uid.toString())
+    activate ArgumentMultimap
+    ArgumentMultimap-->>Command
+    deactivate ArgumentMultimap
+end
+
+create FieldContainsKeywordsPredicate
+Command->>FieldContainsKeywordsPredicate: new FieldContainsKeywordsPredicate(argumentMultimap)
+activate FieldContainsKeywordsPredicate
+FieldContainsKeywordsPredicate-->>Command
+deactivate FieldContainsKeywordsPredicate
+create FindCommand
+Command->>FindCommand: new FindCommand(predicate)
+activate FindCommand
+FindCommand-->>Command
+deactivate FindCommand
+Command->>FindCommand: execute(model)
+activate FindCommand
+FindCommand-->>Command: CommandResult
+deactivate FindCommand
+<<--Command: CommandResult
+deactivate Command
+@enduml
+
