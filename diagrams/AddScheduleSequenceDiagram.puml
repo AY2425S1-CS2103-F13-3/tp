@@ -1,0 +1,29 @@
+@startuml
+actor User as u
+
+u -> AddScheduleCommandParser : parse(args)
+AddScheduleCommandParser -> AddScheduleCommand : create AddScheduleCommand
+u -> AddScheduleCommand : execute(model)
+
+AddScheduleCommand -> Model : getFilteredPersonList()
+Model --> AddScheduleCommand : List<Person>
+
+loop for each Index in contactIndexes
+    AddScheduleCommand -> Person : getUid()
+    Person --> AddScheduleCommand : UUID
+end
+
+AddScheduleCommand -> Meeting : new Meeting(contactsList, name, date, time)
+
+AddScheduleCommand -> Model : hasMeeting(newMeeting)
+Model --> AddScheduleCommand : boolean
+
+alt if duplicate meeting
+    AddScheduleCommand -> u : throw CommandException("This schedule conflicts with an existing schedule.")
+else if no conflict
+    AddScheduleCommand -> Model : addMeeting(newMeeting)
+    Model --> AddScheduleCommand : void
+    AddScheduleCommand -> u : return CommandResult(Success)
+end
+
+@enduml
