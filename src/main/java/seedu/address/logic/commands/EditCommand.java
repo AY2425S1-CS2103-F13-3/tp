@@ -23,6 +23,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Favourite;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -100,9 +101,10 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Favourite updatedFavourite = editPersonDescriptor.getFavourite().orElse(personToEdit.getFavourite());
 
         return new Person(updatedName, updatedPhone, updatedEmail,
-                updatedAddress, updatedTags, personToEdit.getUid());
+                updatedAddress, updatedTags, personToEdit.getUid(), updatedFavourite);
     }
 
     @Override
@@ -139,6 +141,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Favourite favourite;
 
         public EditPersonDescriptor() {}
 
@@ -152,6 +155,7 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setFavourite(toCopy.favourite);
         }
 
         /**
@@ -191,6 +195,12 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+        public void setFavourite(Favourite favourite) {
+            this.favourite = favourite;
+        }
+        public Optional<Favourite> getFavourite() {
+            return Optional.ofNullable(favourite);
         }
 
         /**

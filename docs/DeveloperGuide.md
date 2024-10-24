@@ -1,7 +1,7 @@
 ---
-  layout: default.md
-  title: "Developer Guide"
-  pageNav: 3
+layout: default.md
+title: "Developer Guide"
+pageNav: 3
 ---
 
 # AB-3 Developer Guide
@@ -253,13 +253,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -394,13 +394,13 @@ For all use cases below, the **System** is the `SeeRee 2.0` and the **Actor** is
 
     - 1a1. System requests the user to enter the proper command format.
 
-        Use case resume from step 1.
+      Use case resume from step 1.
 
 - 1b. System detects a duplicate error in the entered data command.
 
     - 1b1. System requests the user to enter a non-conflicting time for the event.
 
-        Use case resumes from step 1.
+      Use case resumes from step 1.
 
 <u>**Use Case: UC2 - Delete events of a schedule**</u>
 
@@ -418,14 +418,14 @@ For all use cases below, the **System** is the `SeeRee 2.0` and the **Actor** is
 2. System deletes the event.
 3. User’s schedule is updated without the removed event.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 - 1a. The given index is invalid
 
     - 1a1. System shows an error message
 
-        Use case resume from step 1.
+      Use case resume from step 1.
 
 <u>**Use Case: UC3 - View schedule**</u>
 
@@ -436,14 +436,14 @@ For all use cases below, the **System** is the `SeeRee 2.0` and the **Actor** is
 1. User requests to see a specific week in his schedule
 2. System updates schedule window to display schedule for that week
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 - 1a. The input date specified by the user does not follow the date format.
 
     - 1a1. System shows an error message, notifying the user the correct date format
 
-	    Use case ends.
+      Use case ends.
 
 <u>**Use Case: UC4 - View contact information**</u>
 
@@ -466,7 +466,7 @@ For all use cases below, the **System** is the `SeeRee 2.0` and the **Actor** is
 
     - 2a1. System notifies the user it is unable to find any user with that name.
 
-        Use case ends.
+      Use case ends.
 
 <u>**Use Case: UC5 - Editing an existing schedule**</u>
 
@@ -484,26 +484,26 @@ For all use cases below, the **System** is the `SeeRee 2.0` and the **Actor** is
 3. System updates the schedule with the provided name, date, time, and contact changes (if specified).
 4. User's schedule is successfully updated.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 - 1a. The system detects an error in the entered command format (e.g., invalid date or time format, index out of range).
 
     - 1a1. The system displays an error message: "Invalid edit-schedule format. Please make sure that the index is in range. d/[DATE] is in the format of DD-MM-YYYY. t/[TIME] is in the format of hhmm (24 hours notation)."
 
-        Use case resumes from step 1.
+      Use case resumes from step 1.
 
 - 1b. The system detects that the contact index to be added or removed is out of range or invalid.
 
     - 1b1. The system displays an error message indicating the invalid contact index.
 
-        Use case resumes from step 1.
+      Use case resumes from step 1.
 
 - 1c. The system detects that the contact specified for removal is not in the current schedule.
 
     - 1c1. The system displays an error message: "Contact not found in the schedule."
 
-        Use case resumes from step 1.
+      Use case resumes from step 1.
 
 ### Non-Functional Requirements
 
@@ -544,15 +544,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -561,16 +561,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -578,7 +578,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
 
@@ -614,10 +614,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Test case:
 
-    1. Expected: 
+    1. Expected:
 
 ### Delete schedule
 
-1. Test case: 
+1. Test case:
 
     1. Expected: 

@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.util.PrefixPresenceUtil.arePrefixesPresent;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
@@ -72,17 +73,5 @@ public class AddScheduleCommandParser implements Parser<AddScheduleCommand> {
         } catch (RuntimeException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddScheduleCommand.MESSAGE_USAGE));
         }
-    }
-
-    /**
-     * Returns true if all specified prefixes are present in the given ArgumentMultimap.
-     */
-    private boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        for (Prefix prefix : prefixes) {
-            if (!argumentMultimap.getValue(prefix).isPresent()) {
-                return false;
-            }
-        }
-        return true;
     }
 }

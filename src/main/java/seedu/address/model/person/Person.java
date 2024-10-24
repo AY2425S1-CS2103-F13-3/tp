@@ -2,12 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
@@ -29,8 +25,8 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private final List<String> schedules;
     private final UUID uid;
+    private final Favourite favourite;
 
     /**
      * Every field must be present and not null.
@@ -42,22 +38,22 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        schedules = new ArrayList<>();
         this.uid = UUID.randomUUID();
+        this.favourite = new Favourite(false);
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, UUID uid) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, UUID uid, Favourite favourite) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
-        schedules = new ArrayList<>();
         this.uid = uid;
+        this.favourite = favourite;
     }
     public Name getName() {
         return name;
@@ -85,7 +81,9 @@ public class Person {
     public UUID getUid() {
         return uid;
     }
-
+    public Favourite getFavourite() {
+        return favourite;
+    }
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -162,28 +160,11 @@ public class Person {
                 .add("tags", tags)
                 .toString();
     }
-
-    /**
-     * Adds a new schedule entry to the list of schedules for the person.
-     * The schedule is stored as a formatted string containing the event name,
-     * date, and time.
-     *
-     * @param name The name or description of the schedule event.
-     * @param date The date of the event in LocalDate format.
-     * @param time The time of the event in LocalTime format.
-     */
-    public void addSchedule(String name, LocalDate date, LocalTime time) {
-        String schedule = name + " on " + date + " at " + time;
-        schedules.add(schedule);
+    public String toNameString() {
+        return name.fullName;
     }
-
-    public boolean hasScheduleConflict(LocalDate date, LocalTime time) {
-        return schedules.stream().anyMatch(s -> s.contains(date.toString()) && s.contains(time.toString()));
-    }
-
-    // Getter for schedules, if needed
-    public List<String> getSchedules() {
-        return schedules;
+    public Person setFavouritePerson() {
+        return new Person(name, phone, email, address, tags, uid, new Favourite(true));
     }
 
 }
