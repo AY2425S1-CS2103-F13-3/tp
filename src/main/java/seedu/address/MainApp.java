@@ -106,8 +106,12 @@ public class MainApp extends Application {
                 logger.info("Creating a new data file " + scheduleStorage.getScheduleListFilePath()
                         + " populated with a sample ScheduleList.");
             }
-            initialScheduleList = scheduleListOptional
-                    .orElse(SampleDataUtil.getSampleScheduleList(initialData));
+            if (initialData.getPersonList().isEmpty()) {
+                initialScheduleList = new ScheduleList();
+            } else {
+                initialScheduleList = scheduleListOptional
+                        .orElse(SampleDataUtil.getSampleScheduleList(initialData));
+            }
             if (JsonSerializableScheduleStorage.hasErrorConvertingToModelType()) {
                 scheduleStorage.handleCorruptedFile();
             }
