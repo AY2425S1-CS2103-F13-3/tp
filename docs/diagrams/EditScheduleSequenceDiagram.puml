@@ -1,0 +1,37 @@
+@startuml
+actor User as u
+
+u -> EditScheduleCommandParser : parse(args)
+EditScheduleCommandParser -> EditScheduleCommand : create EditScheduleCommand
+u -> EditScheduleCommand : execute(model)
+
+EditScheduleCommand -> Model : getFilteredPersonList()
+Model --> EditScheduleCommand : List<Person>
+
+EditScheduleCommand -> Model : getWeeklySchedule()
+Model --> EditScheduleCommand : List<Meeting>
+
+alt if invalid schedule index
+    EditScheduleCommand -> u : throw CommandException(MESSAGE_INVALID_SCHEDULE_INDEX)
+end
+
+loop for each contactIndex in editScheduleDescriptor
+    EditScheduleCommand -> Person : getUid()
+    Person --> EditScheduleCommand : UUID
+end
+
+EditScheduleCommand -> Meeting : update(name, date, time, contactUids)
+Meeting --> EditScheduleCommand : updatedMeeting
+
+EditScheduleCommand -> Model : hasMeeting(updatedMeeting)
+Model --> EditScheduleCommand : boolean
+
+alt if duplicate meeting
+    EditScheduleCommand -> u : throw CommandException(MESSAGE_DUPLICATE_SCHEDULE)
+else if no conflict
+    EditScheduleCommand -> Model : setMeeting(meetingToEdit, updatedMeeting)
+    Model --> EditScheduleCommand : void
+    EditScheduleCommand -> u : return CommandResult(Success)
+end
+
+@enduml
