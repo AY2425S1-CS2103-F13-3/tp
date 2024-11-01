@@ -1,0 +1,22 @@
+@startuml
+start
+:from jsonScheduleStorage,
+readScheudleList();
+if () then ([storage file found])
+  if () then ([error converting
+      to model])
+    :backup corrupted file;
+  else ([no error converting
+    to model])
+  endif
+else([storage file not found])
+  if () then ([sample address
+      book was generated])
+    :generate sample schedule list;
+  else ([sample address
+      book was not generated])
+    :generate empty schedule list;
+  endif
+endif
+stop
+@enduml
