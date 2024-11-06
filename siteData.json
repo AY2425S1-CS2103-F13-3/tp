@@ -53,6 +53,7 @@
         "implementation": "Implementation",
         "view-meeting-contacts-feature": "View meeting contacts feature",
         "add-meetings-to-a-schedule-feature": "Add meetings to a schedule feature",
+        "delete-meetings-from-the-current-schedule-feature": "Delete meetings from the current schedule feature",
         "load-schedule-storage": "Load schedule storage",
         "proposed-undo-redo-feature": "[Proposed] Undo/redo feature",
         "proposed-data-archiving": "[Proposed] Data archiving",

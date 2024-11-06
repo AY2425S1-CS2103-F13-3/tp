@@ -15,6 +15,9 @@ Class PersonListPanel
 Class PersonCard
 Class StatusBarFooter
 Class CommandBox
+Class WeeklySchedulePanel
+Class DailySchedulePanel
+Class CalendarCard
 }
 
 package Model <<Rectangle>> {
@@ -32,11 +35,15 @@ UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
 MainWindow *-down-> "1" StatusBarFooter
+MainWindow *-down-> "1" WeeklySchedulePanel
+MainWindow *-down-> "1" PersonListPanel
 MainWindow --> "0..1" HelpWindow
 
 PersonListPanel -down-> "*" PersonCard
+
+WeeklySchedulePanel -down-> "7" DailySchedulePanel
+DailySchedulePanel -down-> "*" CalendarCard
 
 MainWindow -left-|> UiPart
 
@@ -46,8 +53,12 @@ PersonListPanel --|> UiPart
 PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+WeeklySchedulePanel --|> UiPart
+DailySchedulePanel --|> UiPart
+CalendarCard --|> UiPart
 
 PersonCard ..> Model
+CalendarCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
