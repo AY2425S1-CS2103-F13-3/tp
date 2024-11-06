@@ -3,9 +3,9 @@ package seedu.address.ui.calendar;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.model.schedule.Meeting;
@@ -30,7 +30,7 @@ public class CalendarCard extends UiPart<Region> {
     @FXML
     private Label time;
     @FXML
-    private FlowPane associatedContacts;
+    private VBox associatedContacts;
 
     /**
      * Creates a {@code CalendarCard} with the given {@code meeting} and index to display.
