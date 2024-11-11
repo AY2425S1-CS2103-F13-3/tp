@@ -121,7 +121,7 @@
         "features": "Features",
         "viewing-help-help": "Viewing help : help",
         "adding-a-contact-add": "Adding a contact: add",
-        "listing-all-contacts-list": "Listing all contacts : list",
+        "listing-all-persons-list": "Listing all persons : list",
         "editing-a-contact-edit": "Editing a contact : edit",
         "locating-contacts-by-name-and-tag-find": "Locating contacts by name and tag: find",
         "deleting-a-contact-delete": "Deleting a contact : delete",
@@ -153,9 +153,9 @@
     },
     {
       "src": "team/brendan.md",
-      "title": "Brendan Soh's Project Portfolio Page",
+      "title": "Brendan's Project Portfolio Page",
       "headings": {
-        "project-addressbook-level-3": "Project: AddressBook Level 3"
+        "project-seeree-2-0": "Project: SeeRee 2.0"
       },
       "headingKeywords": {}
     },
