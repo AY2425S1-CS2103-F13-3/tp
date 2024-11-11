@@ -7,8 +7,10 @@ skinparam classBackgroundColor MODEL_COLOR
 Package Model as ModelPackage <<Rectangle>>{
 Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+Class "<<interface>>\nReadOnlyScheduleList" as ReadOnlyScheduleList
 Class "<<interface>>\nModel" as Model
 Class AddressBook
+Class ScheduleList
 Class ModelManager
 Class UserPrefs
 
@@ -20,6 +22,13 @@ Class Name
 Class Phone
 Class Tag
 
+Class UniqueMeetingList
+Class Meeting
+Class LocalDate
+Class LocalTime
+Class meetingName
+Class contactUids
+
 Class I #FFFFFF
 }
 
@@ -27,12 +36,15 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
 AddressBook .up.|> ReadOnlyAddressBook
+ScheduleList .up.|> ReadOnlyScheduleList
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyAddressBook
+Model .left.> ReadOnlyScheduleList
 ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
+ModelManager -left-> "1" ScheduleList
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
@@ -43,6 +55,13 @@ Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
 
+ScheduleList *--> "1" UniqueMeetingList
+UniqueMeetingList --> "~* all" Meeting
+Meeting *--> LocalTime
+Meeting *--> LocalDate
+Meeting *--> meetingName
+Meeting *--> contactUids
+
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
 
@@ -51,4 +70,5 @@ Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" Meeting
 @enduml
